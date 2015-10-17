@@ -106,9 +106,12 @@
   </script>
   <%= yield :scripts %>
   <script>
-    ga('create', '<%= Setting.google_analytics_key %>', 'auto');
-    ga('require', 'displayfeatures');
-    ga('send', 'pageview');
+$.getScript("https://www.google-analytics.com/analytics.js",function(){
+try {
+   var pageTracker = _gat._getTracker('<%= Setting.google_analytics_key %>');
+    pageTracker._trackPageview();
+} catch(e) {}
+});
   </script>
   <div class="zoom-overlay"></div>
 </body>
